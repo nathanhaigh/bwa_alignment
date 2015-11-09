@@ -26,7 +26,7 @@ After completing this practical the trainee should be able to:
  
 \subsection{Tools Used}
 \begin{description}[style=multiline,labelindent=0cm,align=left,leftmargin=0.5cm]
-%  \item[BWA Burrow wheel Algorithm]\hfill\\
+  \item[BWA Burrow Wheel Algorithm]\hfill\\
   	\url{http://bio-bwa.sourceforge.net}
   \item[Samtools]\hfill\\
   	\url{http://picard.sourceforge.net/}
@@ -52,7 +52,7 @@ After completing this practical the trainee should be able to:
 \begin{information}
 The goal of this hands-on session is to perform an NGS alignment on the sequencing data coming from a tomour and normal group of samples. We will align raw sequencing data to the mouse genome using BWA aligner and then we will discuss at the the sequence alignment and mapping format (SAM). SAM to BAM coversion, indexing and sorting will also be demostrated. These are important and essential steps for downstreaming processing of the aligned BAM files. 
  
-This data is the whole genome sequencing of a lung adenocarcinoma patient AK55. It was downloaded from ERP001071 (a link is provided in the data source section). Only the HiSeq2000 data for Blood and liverMets were analysed.
+This data is the whole genome sequencing of a lung adenocarcinoma patient AK55. It was downloaded from \texttt{ERP001071} (a link is provided in the data source section). Only the HiSeq2000 data for \texttt{Blood} and \texttt{liverMets} were analysed.
 
 Accession numbers associated with read data assigned by the European Bioinformatics Institute (EBI) start with 'ER'. e.g. ERP is the study and ERR is the run. The original FASTQ files downloaded had the ERR number in front of each read name in the FASTQ file. The read name had to be edited to remove the ERR number at the start of the name. This had caused problems for downstream programs such as Picard for marking optical duplicates.
 
@@ -80,6 +80,7 @@ cd ~/alignment
 
 \begin{information}
 You already know that there are a number of competing tools for short read alignment, each with its own set of strengths, weaknesses, and caveats. Here we will use BWA, a widely used aligner based on Burrow Wheel Algorithm.  The alignment involves two steps- first, indexing the genome and then running the alignment command.  
+BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome. It consists of three algorithms: BWA-backtrack, BWA-SW and BWA-MEM. The first algorithm is designed for Illumina sequence reads up to 100bp, while the rest two for longer sequences ranged from 70bp to 1Mbp. BWA-MEM and BWA-SW share similar features such as long-read support and split alignment, but BWA-MEM, which is the latest, is generally recommended for high-quality queries as it is faster and more accurate. BWA-MEM also has better performance than BWA-backtrack for 70-100bp Illumina reads (ref:bwa manual).
 \end{information}
 
 \begin{steps}
@@ -90,8 +91,6 @@ bwa <press enter>
 \end{lstlisting}
 
 BWA uses indexed genome for the alignment in order to keep its memory footprint small. Because of time constraints we will not be running the indexing command. It is run only once for a version of genome, the complete command to index the human genome version hg19 is given below. 
-FASTA format. This is stored in a file named \texttt{mm10}, under the
-subdirectory \texttt{bowtie\_index}.
 
 \begin{warning}
   You DO NOT need to run this command. This has already been run for you.
@@ -110,16 +109,15 @@ ls -l bwa_index
 \begin{information}
 Now that the genome is indexed we can move on to the actual alignment. The first
 argument for \texttt{bwa} is the basename of the index for the genome to be searched;
-in our case this is \texttt{human_v37}. We also want to make sure that the output is
-in SAM format using the \texttt{-S} parameter. The last argument is the name of the
-FASTQ file.
+in our case this is \texttt{human_v37}.
+
 \end{information}
 
 \begin{steps}
-Align the Oct4 reads using Bowtie2: 
+Align the reads from Blood samples using the following command: 
 
 \begin{lstlisting}
-bwa mem -M -t 4 -R @RG\tSM:Blood\tID:ERR059354\tLB:lb\tPL:ILLUMINA human_g1k_v37.fasta Blood_ID_ERR059354_R1.fastq.gz Blood_ID_ERR059354_R2.fastq.gz > Blood_ID_ERR059354.sam
+bwa mem -M -t 4 -R @RG\tSM:Blood\tID:ERR059354\tLB:lb\tPL:ILLUMINA human_g1k_v37 Blood_ID_ERR059354_R1.fastq.gz Blood_ID_ERR059354_R2.fastq.gz > Blood_ID_ERR059354.sam
 \end{lstlisting}
 
 The above command outputs the alignment in SAM format and stores them in the
@@ -127,21 +125,17 @@ file \texttt{Blood_ID_ERR059354.sam}.
 \end{steps}
 
 \begin{note}
-In general before you run Bowtie2, you have to know what quality encoding your FASTQ files
-are in. The available FASTQ encodings for bowtie are:
-
+We have used the following arguments for the alignment of the reads.
 \begin{description}[style=multiline,labelindent=0cm,align=right,leftmargin=\descriptionlabelspace,rightmargin=1.5cm,font=\ttfamily]
-  \item[mem] =
+  \item[mem] = fast mode of high quality input such the Illumina
   \item[-M] = flags extra hits as secondary. This is needed for compatibility with other tools downstream.
   \item[-t] = Number of threads.
   \item[-R] = Complete read group header line.
 \end{description}
 
 The FASTQ files we are working with are Sanger encoded (Phred+33), which is the
-default for Bowtie2.
+default for BWA.
 
-Bwa will take x-y minutes to align the file. This is fast compared to
-other aligners which sacrifice some speed to obtain higher sensitivity.
 \end{note}
 
 \begin{steps}
@@ -197,13 +191,13 @@ much less space.
 
 \begin{steps}
 Convert SAM to BAM using \texttt{samtools view} and store the output in the file
-\texttt{Oct4.bam}. You have to instruct \texttt{samtools view} that the input is in SAM
+\texttt{Blood.bam}. You have to instruct \texttt{samtools view} that the input is in SAM
 format (\texttt{-S}), the output should be in BAM format (\texttt{-b}) and that
 you want the output to be stored in the file specified by the \texttt{-o}
 option:
 
 \begin{lstlisting}
-samtools view -bSo Oct4.bam Oct4.sam
+samtools view -bSo Blood.bam Blood.sam
 \end{lstlisting}
 \end{steps}
 
@@ -211,63 +205,46 @@ samtools view -bSo Oct4.bam Oct4.sam
 Compute summary stats for the Flag values associated with the alignments using:
 
 \begin{lstlisting}
-samtools flagstat Oct4.bam
+samtools flagstat Blood.bam
 \end{lstlisting}
 \end{advanced}
 
 \section{Post alignment processing}
 
 \begin{information}
-IGV is a stand-alone genome browser. Please check their website
-(\url{http://www.broadinstitute.org/igv/}) for all the formats that IGV
-can display. For our visualization purposes we will use the BAM and bigWig
-formats.
-\end{information}
-
-\begin{note}
-When uploading a BAM file into the genome browser, the browser will look for the
+When uploading a BAM file into the genome browser, such as IGV, the browser will look for the
 index of the BAM file in the same folder where the BAM files is. The index file
 should have the same name as the BAM file and the suffix \texttt{.bai}. Finally, to
 create the index of a BAM file you need to make sure that the file is sorted
 according to chromosomal coordinates.
+\begin{note}
+IGV is a stand-alone genome browser. Please check their website
+(\url{http://www.broadinstitute.org/igv/}) for all the formats that IGV
+can display. 
 \end{note}
+
+\end{information}
+
 
 \begin{steps}
 Sort alignments according to chromosomal position and store the result in the
-file with the prefix \texttt{Oct4.sorted}:
+file with the prefix \texttt{Blood.sorted}:
 
 \begin{lstlisting}
-samtools sort Oct4.bam Oct4.sorted
+samtools sort Blood.bam Blood.sorted
 \end{lstlisting}
 
 Index the sorted file.
 
 \begin{lstlisting}
-samtools index Oct4.sorted.bam
+samtools index Blood.sorted.bam
 \end{lstlisting}
 
-The indexing will create a file called \texttt{Oct4.sorted.bam.bai}. Note that
+The indexing will create a file called \texttt{Blood.sorted.bam.bai}. Note that
 you don't have to specify the name of the index file when running
 \texttt{samtools index}, it simply appends a \texttt{.bai} suffix to the input
 BAM file.
 \end{steps}
-
-\begin{note}
-\end{note}
-
-\begin{steps}
-
-\begin{lstlisting}
-\end{lstlisting}
-\end{steps}
-
-\begin{note}
-\end{note}
-
-\begin{steps}
-
-\begin{lstlisting}[style=command_syntax]
-\end{lstlisting}
 
 
 \begin{questions}
@@ -278,11 +255,4 @@ The
 \end{questions}
 
 
-\begin{questions}
-What do you think the different colors mean?
-\begin{answer}
-The different color represents four nucleotides, e.g. blue is Cytidine (C), red
-is Thymidine (T).
-\end{answer}
-\end{questions}
 
