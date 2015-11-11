@@ -222,18 +222,18 @@ samtools flagstat SM_Blood.bam
 \end{lstlisting}
 \end{advanced}
 
-\section{Post alignment processing}
+\section{Post Alignment Visualisation option}
 
 \begin{information}
-When uploading a BAM file into the genome browser, such as IGV, the browser will look for the
+IGV is a stand-alone genome browser that can be used to visualise the BAM outputs.. Please check their website
+(\url{http://www.broadinstitute.org/igv/}) for all the formats that IGV can display.
+ 
+We will be using IGV later in the workshop for viewing a BAM file in the genome browser. It requires 
 index of the BAM file in the same folder where the BAM files is. The index file
 should have the same name as the BAM file and the suffix \texttt{.bai}. Finally, to
 create the index of a BAM file you need to make sure that the file is sorted
 according to chromosomal coordinates.
 \begin{note}
-IGV is a stand-alone genome browser. Please check their website
-(\url{http://www.broadinstitute.org/igv/}) for all the formats that IGV
-can display. 
 \end{note}
 
 \end{information}
@@ -261,9 +261,9 @@ BAM file.
 
 
 \begin{questions}
-What is the 
+How can you quickly find out whether a BAM file is already coordinate sorted or not ? 
 \begin{answer}
-The 
+Look at the SAM header.
 \end{answer}
 \end{questions}
 
