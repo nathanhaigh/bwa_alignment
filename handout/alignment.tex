@@ -148,6 +148,11 @@ We have used the following arguments for the alignment of the reads.
 
 \end{note}
 
+\begin{information}
+The SAM (Sequence Alignment/Map) format is currently the de facto standard for storing large nucleotide sequence alignments. It is a TAB-delimited text format consisting of a header section, which is optional, and an alignment section. If present, the header must be prior to the alignments. Header lines start with \texttt{@}, while alignment lines do not. Each alignment line has 11 mandatory fields for essential alignment information such as mapping position.
+\end{information}
+
+
 \begin{steps}
 Look at the top 10 lines of the SAM file by typing:
 
