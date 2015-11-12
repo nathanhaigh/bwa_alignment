@@ -104,13 +104,13 @@ BWA uses indexed genome for the alignment in order to keep its memory footprint 
   \end{lstlisting}
 \end{warning}
 
-This command will output 6 files that constitute the index. These files that have the prefix \texttt{human_v37} are stored in the \texttt{bwa\_index} subdirectory. To view if they files have been successfully created type:
+This command will output 6 files that constitute the index. These files that have the prefix \texttt{human\_v37} are stored in the \texttt{bwa\_index} subdirectory. To view if they files have been successfully created type:
 
 We have used the following arguments for the indexing of the genome.
 \begin{description}[style=multiline,labelindent=0cm,align=right,leftmargin=\descriptionlabelspace,rightmargin=1.5cm,font=\ttfamily]
-  \item[-p] = Prefix of the output database [same as db filename] 
+  \item[-p] = Prefix of the output database [same as db filename]
   \item[-a] = Algorithm for constructing BWT index. This method works with the whole human genome.
-  \item[reference genome file name] = the last argument is the name of the reference genome file in the fasta format
+  \item[ref genome filename] = the last argument is the name of the reference genome file in the fasta format
 \end{description}
 
 The FASTQ files we are working with are Sanger encoded (Phred+33), which is the
@@ -122,7 +122,7 @@ ls -l bwaIndex
 \begin{information}
 Now that the genome is indexed we can move on to the actual alignment. The first
 argument for \texttt{bwa} is the basename of the index for the genome to be searched;
-in our case this is \texttt{human_v37}.
+in our case this is \texttt{human\_v37}.
 
 \end{information}
 
@@ -134,7 +134,7 @@ bwa mem -M -t 4 -R @RG\tSM:Blood\tID:ERR059354\tLB:lb\tPL:ILLUMINA human_g1k_v37
 \end{lstlisting}
 
 The above command outputs the alignment in SAM format and stores them in the
-file \texttt{Blood_ID_ERR059354.sam}.
+file \texttt{Blood\_ID\_ERR059354.sam}.
 \end{steps}
 
 \begin{note}
