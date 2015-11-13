@@ -50,10 +50,14 @@ After completing this practical the trainee should be able to:
 The goal of this hands-on session is to perform an NGS alignment on the sequencing data coming from a tomour and normal group of samples. We will align raw sequencing data to the mouse genome using BWA aligner and then we will discuss at the the sequence alignment and mapping format (SAM). SAM to BAM coversion, indexing and sorting will also be demostrated. These are important and essential steps for downstreaming processing of the aligned BAM files. 
  
 This data is the whole genome sequencing of a lung adenocarcinoma patient AK55. It was downloaded from \texttt{ERP001071} (a link is provided in the data source section). Only the HiSeq2000 data for \texttt{Blood} and \texttt{liverMets} were analysed.
+\end{information}
 
+\begin{note}
 Accession numbers associated with read data assigned by the European Bioinformatics Institute (EBI) start with 'ER'. e.g. ERP is the study and ERR is the run. The original FASTQ files downloaded had the ERR number in front of each read name in the FASTQ file. The read name had to be edited to remove the ERR number at the start of the name. This had caused problems for downstream programs such as Picard for marking optical duplicates.
+\end{note}
 
-We have used 4 Blood samples (8 PE \texttt{.fastq.gz} files) and 5 Liver samples (10 PE \texttt{.fastq.gz} files) data from this study to perform the whole genome alignment using the BWA aligner. The whole process took >150K CPU seconds per sample and the precomputed alignment will be used in different sections of this workshop. 
+\begin{information}
+We have used 4 Blood samples (8 PE \texttt{.fastq.gz} files) and 5 Liver samples (10 PE \texttt{.fastq.gz} files) data from this study to perform the whole genome alignment using the BWA aligner. The whole process took \textgreater150K CPU seconds per sample and the precomputed alignment will be used in different sections of this workshop. 
 \end{information}
 
 \section{Prepare the Environment}
