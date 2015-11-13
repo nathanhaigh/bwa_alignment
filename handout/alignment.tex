@@ -75,9 +75,9 @@ Open the Terminal.
 
 First, go to the right folder, where the data are stored.
 \begin{lstlisting}
-cd ~/alignment
+cd /home/trainee/alignment
 ls
-head -10 input/SM_Blood*_R1.fastq
+zless input/SM_Blood*_R1.fastq.gz
 \end{lstlisting}
 
 \end{steps}
@@ -123,7 +123,7 @@ ls -l bwaIndex
 \begin{information}
 Now that the genome is indexed we can move on to the actual alignment. The first
 argument for \texttt{bwa} is the basename of the index for the genome to be searched;
-in our case this is \texttt{human\_v37}.
+in our case this is \texttt{human\_g1k\_v37.fasta}.
 
 \end{information}
 
@@ -131,11 +131,11 @@ in our case this is \texttt{human\_v37}.
 Align the reads from Blood samples using the following command: 
 
 \begin{lstlisting}
-bwa mem -M -t 4 -R @RG\tSM:Blood\tID:ERR059354\tLB:lb\tPL:ILLUMINA human_g1k_v37 Blood_ID_ERR059354_R1.fastq.gz Blood_ID_ERR059354_R2.fastq.gz > Blood_ID_ERR059354.sam
+bwa mem -M -t 4 -R @RG\tSM:Blood\tID:ERR059354\tLB:lb\tPL:ILLUMINA human_g1k_v37 Blood_ID_ERR059354_R1.fastq.gz Blood_ID_ERR059354_R2.fastq.gz > SM_Blood.sam
 \end{lstlisting}
 
 The above command outputs the alignment in SAM format and stores them in the
-file \texttt{Blood\_ID\_ERR059354.sam}.
+file \texttt{SM\_Blood.sam}.
 \end{steps}
 
 \begin{note}
@@ -158,7 +158,7 @@ The SAM (Sequence Alignment/Map) format is currently the de facto standard for s
 Look at the top 10 lines of the SAM file by typing:
 
 \begin{lstlisting}
-head -n 10 SM_Blood*.sam
+head -n 10 SM_Blood.sam
 \end{lstlisting}
 \end{steps}
 
@@ -210,7 +210,7 @@ much less space.
 
 \begin{steps}
 Convert SAM to BAM using \texttt{samtools view} and store the output in the file
-\texttt{Blood.bam}. You have to instruct \texttt{samtools view} that the input is in SAM
+\texttt{SM\_Blood.bam}. You have to instruct \texttt{samtools view} that the input is in SAM
 format (\texttt{-S}), the output should be in BAM format (\texttt{-b}) and that
 you want the output to be stored in the file specified by the \texttt{-o}
 option:
@@ -250,13 +250,13 @@ Sort alignments according to chromosomal position and store the result in the
 file with the prefix \texttt{Blood.sorted}:
 
 \begin{lstlisting}
-samtools sort Blood.bam Blood.sorted
+samtools sort SM_Blood.bam SM_Blood.sorted
 \end{lstlisting}
 
 Index the sorted file.
 
 \begin{lstlisting}
-samtools index Blood.sorted.bam
+samtools index SM_Blood.sorted.bam
 \end{lstlisting}
 
 The indexing will create a file called \texttt{Blood.sorted.bam.bai}. Note that
@@ -269,7 +269,7 @@ BAM file.
 \begin{questions}
 How can you quickly find out whether a BAM file is already coordinate sorted or not ? 
 \begin{answer}
-Look at the SAM header.
+Use samtools view command to look at the SAM header.
 \end{answer}
 \end{questions}
 
