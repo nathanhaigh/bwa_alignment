@@ -8,52 +8,69 @@ btp::modules:
     data:
       human_g1k_v37.dict: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/bwaIndex'
-        targets: 'bwaIndex/human_g1k_v37.dict'
+        targets: 
+          - 'alignment/bwaIndex/human_g1k_v37.dict'
       human_g1k_v37.fasta.amb: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/bwaIndex'
-        targets: 'bwaIndex/human_g1k_v37.fasta.amb'
+        targets: 
+          - 'alignment/bwaIndex/human_g1k_v37.fasta.amb'
       human_g1k_v37.fasta.ann: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/bwaIndex'
-        targets: 'bwaIndex/human_g1k_v37.fasta.ann'
+        targets: 
+          - 'alignment/bwaIndex/human_g1k_v37.fasta.ann'
       human_g1k_v37.fasta.bwt: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/bwaIndex'
-        targets: 'bwaIndex/human_g1k_v37.fasta.bwt'
+        targets: 
+          - 'alignment/bwaIndex/human_g1k_v37.fasta.bwt'
       human_g1k_v37.fasta.fai: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/bwaIndex'
-        targets: 'bwaIndex/human_g1k_v37.fasta.fai'
+        targets: 
+          - 'alignment/bwaIndex/human_g1k_v37.fasta.fai'
       human_g1k_v37.fasta.pac: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/bwaIndex'
-        targets: 'bwaIndex/human_g1k_v37.fasta.pac'
+        targets: 
+          - 'alignment/bwaIndex/human_g1k_v37.fasta.pac'
       human_g1k_v37.fasta.sa: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/bwaIndex'
-        targets: 'bwaIndex/human_g1k_v37.fasta.sa'
+        targets: 
+          - 'alignment/bwaIndex/human_g1k_v37.fasta.sa'
       SM_Blood_ID_ERR059356.subset_R1.fastq.gz: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/input'
-        targets: 'input/SM_Blood_ID_ERR059356.subset_R1.fastq.gz'
+        targets: 
+          - 'alignment/input/SM_Blood_ID_ERR059356.subset_R1.fastq.gz'
       SM_Blood_ID_ERR059356.subset_R1.fastq.gz.md5.txt: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/input'
-        targets: 'input/SM_Blood_ID_ERR059356.subset_R1.fastq.gz.md5.txt'
+        targets: 
+          - 'alignment/input/SM_Blood_ID_ERR059356.subset_R1.fastq.gz.md5.txt'
       SM_Blood_ID_ERR059356.subset_R2.fastq.gz: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/input'
-        targets: 'input/SM_Blood_ID_ERR059356.subset_R2.fastq.gz'
+        targets: 
+          - 'alignment/input/SM_Blood_ID_ERR059356.subset_R2.fastq.gz'
       SM_Blood_ID_ERR059356.subset_R2.fastq.gz.md5.txt: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/input'
-        targets: 'input/SM_Blood_ID_ERR059356.subset_R2.fastq.gz.md5.txt'
+        targets: 
+          - 'alignment/input/SM_Blood_ID_ERR059356.subset_R2.fastq.gz.md5.txt'
       SM_Blood_ID_ERR059356.subset.sam: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/precomputed'
-        targets: 'precomputed/SM_Blood_ID_ERR059356.subset.sam'
+        targets: 
+          - 'alignment/precomputed/SM_Blood_ID_ERR059356.subset.sam'
       SM_Blood_ID_ERR059356.subset.sam.md5.txt: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/precomputed'
-        targets: 'precomputed/SM_Blood_ID_ERR059356.subset.sam.md5.txt'
+        targets: 
+          - 'alignment/precomputed/SM_Blood_ID_ERR059356.subset.sam.md5.txt'
       SM_Blood_ID_ERR059356.subset.sorted.bam: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/precomputed'
-        targets: 'precomputed/SM_Blood_ID_ERR059356.subset.sorted.bam'
+        targets: 
+          - 'alignment/precomputed/SM_Blood_ID_ERR059356.subset.sorted.bam'
       SM_Blood_ID_ERR059356.subset.sorted.bam.bai: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/precomputed'
-        targets: 'precomputed/SM_Blood_ID_ERR059356.subset.sorted.bam.bai'
+        targets: 
+          - 'alignment/precomputed/SM_Blood_ID_ERR059356.subset.sorted.bam.bai'
       SM_Blood_ID_ERR059356.subset.sorted.bam.bai.md5.txt: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/precomputed'
-        targets: 'precomputed/SM_Blood_ID_ERR059356.subset.sorted.bam.bai.md5.txt'
+        targets: 
+          - 'alignment/precomputed/SM_Blood_ID_ERR059356.subset.sorted.bam.bai.md5.txt'
       SM_Blood_ID_ERR059356.subset.sorted.bam.md5.txt: 
         source: 'https://s3-ap-southeast-2.amazonaws.com/cancer-data-alignment/precomputed'
-        targets: 'precomputed/SM_Blood_ID_ERR059356.subset.sorted.bam.md5.txt'
+        targets: 
+          - 'alignment/precomputed/SM_Blood_ID_ERR059356.subset.sorted.bam.md5.txt'
