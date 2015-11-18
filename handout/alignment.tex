@@ -80,7 +80,7 @@ First, go to the right folder, where the data are stored.
 \begin{lstlisting}
 cd /home/trainee/alignment
 ls
-zless input/SM_Blood*_R1.fastq.gz
+zless input/SM_Blood_ID_ERR059356.subset_R1.fastq.gz
 \end{lstlisting}
 
 \end{steps}
@@ -133,7 +133,7 @@ in our case this is \texttt{human\_g1k\_v37.fasta}.
 Align the reads from Blood samples using the following command: 
 
 \begin{lstlisting}
-bwa mem -M -t 4 -R @RG\tSM:Blood\tID:ERR059354\tLB:lb\tPL:ILLUMINA human_g1k_v37 Blood_ID_ERR059354_R1.fastq.gz Blood_ID_ERR059354_R2.fastq.gz > SM_Blood.sam
+bwa mem -M -t 4 -R @RG\tSM:Blood\tID:ERR059354\tLB:lb\tPL:ILLUMINA human_g1k_v37 SM_Blood_ID_ERR059356.subset_R1.fastq.gz SM_Blood_ID_ERR059356.subset_R2.fastq.gz > SM_Blood.sam
 \end{lstlisting}
 
 The above command outputs the alignment in SAM format and stores them in the
